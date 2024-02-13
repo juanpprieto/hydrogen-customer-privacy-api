@@ -12,6 +12,7 @@ import {
   LiveReload,
   useMatches,
   useRouteError,
+  useLoaderData,
   ScrollRestoration,
   isRouteErrorResponse,
   type ShouldRevalidateFunction,
@@ -19,6 +20,9 @@ import {
 import favicon from '../public/favicon.svg';
 import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
+
+// 1. Import the ShopifyCookieBanner component
+import {ShopifyCookieBanner} from '~/components/ShopifyCookieBanner';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -66,9 +70,7 @@ export const useRootLoaderData = () => {
 };
 
 export async function loader({context}: LoaderFunctionArgs) {
-  const {customerAccount, cart} = context;
-  const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
-
+  const {customerAccount, cart, env} = context;
   const isLoggedInPromise = customerAccount.isLoggedIn();
 
   // defer the cart query by not awaiting it
@@ -78,7 +80,13 @@ export async function loader({context}: LoaderFunctionArgs) {
     {
       cart: cartPromise,
       isLoggedIn: isLoggedInPromise,
-      publicStoreDomain,
+      // 2. Return the environment variables required by the ShopifyCookieBanner component
+      env: {
+        publicStoreDomain: env.PUBLIC_STORE_DOMAIN,
+        checkoutRootDomain: env.PUBLIC_CHECKOUT_DOMAIN,
+        storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
+        storefrontRootDomain: env.PUBLIC_STORE_DOMAIN,
+      },
     },
     {
       headers: {
@@ -90,6 +98,7 @@ export async function loader({context}: LoaderFunctionArgs) {
 
 export default function App() {
   const nonce = useNonce();
+  const {env} = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">
@@ -98,6 +107,13 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        {/* 3. Render the ShopifyCookieBanner component with the environment variables */}
+        <ShopifyCookieBanner
+          checkoutRootDomain={env.checkoutRootDomain}
+          shopDomain={env.publicStoreDomain}
+          storefrontAccessToken={env.storefrontAccessToken}
+          storefrontRootDomain={env.storefrontRootDomain}
+        />
       </head>
       <body>
         <Outlet />

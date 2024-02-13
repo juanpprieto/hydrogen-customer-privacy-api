@@ -25,6 +25,8 @@ declare global {
     PUBLIC_STOREFRONT_ID: string;
     PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID: string;
     PUBLIC_CUSTOMER_ACCOUNT_API_URL: string;
+    // 1. Add a new environment variable for the checkout domain.
+    PUBLIC_CHECKOUT_DOMAIN: string;
   }
 }
 
