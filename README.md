@@ -4,6 +4,8 @@ This folder contains an example implementation of the [Shopify Cookie Banner](ht
 
 More specifically, this example demonstrates how to load an admin-customizable banner that allows merchants to accept or reject marketing tracking cookies.
 
+<img width="757" alt="Screenshot 2024-02-12 at 5 31 47 PM" src="https://github.com/juanpprieto/hydrogen-customer-privacy-api/assets/12080141/314f38bf-3cfb-4a1e-9307-a0328057f9db">
+
 ## Key files
 
 This folder contains the minimal set of files needed to showcase the implementation.
