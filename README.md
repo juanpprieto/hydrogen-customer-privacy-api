@@ -1,6 +1,6 @@
 # Hydrogen example: Shopify Cookie Consent Banner
 
-This folder contains an example implementation of the [Shopify Cookie Banner](https://shopify.dev/docs/api/customer-privacy#installation-on-a-custom-storefront) based on the [Customer Privacy API](https://shopify.dev/docs/api/customer-privacy#installation-on-a-custom-storefront.
+This folder contains an example implementation of the [Shopify Cookie Banner](https://shopify.dev/docs/api/customer-privacy#installation-on-a-custom-storefront) based on the [Customer Privacy API](https://shopify.dev/docs/api/customer-privacy#installation-on-a-custom-storefront).
 
 More specifically, this example demonstrates how to load an admin-customizable banner that allows merchants to accept or reject marketing tracking cookies.
 
@@ -14,8 +14,10 @@ create are labeled with 🆕.
 | ---------------------------------------------------- | ----------------------------------------- |
 | 🆕 [`app/components/ShopifyCookieBanner.tsx`](app/components/ShopifyCookieBanner.tsx) | A component that loads the Shopify cookie banner |
 | [`app/root.tsx`](app/root.tsx) | The root layout modified to display the consent banner |
+| [`app/remix.env.d.ts`](app/remix.env.d.ts) | Typescript Remix definitions |
+| [`app/entry.server.tsx`](app/entry.server.tsx) | Remix entry server component |
 
-> [!NOTE]
+> [!IMPORTANT]
 > During development, you can force the banner by passing `?preview_privacy_banner=1`
 
 ## Instructions
